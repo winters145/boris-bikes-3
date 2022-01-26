@@ -15,6 +15,21 @@ describe DockingStation do
       expect(bike).to be_working
     end
   end
-end 
+
+  describe "#dock" do 
+  it 'docks a bike at a station' do 
+    # station = DockingStation.new
+    bike = Bike.new
+    subject.dock(bike)
+    expect(subject.bike).to eq bike  
+  end
+end
+describe "#bike" do 
+it 'docking station responds to bike' do
+    station = DockingStation.new 
+    expect(station).to respond_to(:bike)
+    end 
+    end 
+end
 
 # a) gets a bike, and then b) expects the bike to be working
