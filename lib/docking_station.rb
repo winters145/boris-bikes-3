@@ -13,10 +13,18 @@ class DockingStation
       @stored_bikes.last
     end
 
-    def dock(bike) 
-      raise "station full" if @stored_bikes.count == 20
+    def dock(bike)
+      raise "station full" if full? == true
       @stored_bikes << bike
       @bike = bike
+    end
+
+    def full?
+      if @stored_bikes.count < 20
+        false
+      else
+        true
+     end
     end
 
 end 
