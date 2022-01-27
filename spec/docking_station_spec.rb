@@ -1,5 +1,4 @@
 require "docking_station"
-
 describe DockingStation do 
     describe "#release_bike" do
       it "should respond to release_bike" do
@@ -28,7 +27,7 @@ describe DockingStation do
         expect(subject.bike).to eq bike
       end
       it "should give an error when bike is added to full docking station" do 
-        expect {21.times { subject.dock Bike.new } }.to raise_error("station full")
+        expect { (DockingStation::DEFAULT_CAPACITY+1).times { subject.dock Bike.new } }.to raise_error("station full")
       end  
     end
 
