@@ -16,7 +16,7 @@ describe DockingStation do
     describe "#get_bike" do
       it 'releases working bikes' do
         bike = Bike.new
-        expect(bike).to be_working
+        expect(bike.working?(true)).to eq true
       end
     end
 
@@ -45,6 +45,14 @@ describe DockingStation do
       it "should return the default capacity if no capacity argument set" do
         station = DockingStation.new
         expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
+      end
+    end
+
+    describe "#return_bike" do
+      it "should allow a bike to be labelled as broken when returned" do
+        broken_bike = Bike.new
+        subject.return_bike(broken_bike, false)
+        expect(broken_bike.working?(false)).to eq false 
       end
     end
 end

@@ -22,6 +22,14 @@ class DockingStation
       @bike = bike
     end
 
+    def return_bike(bike, broken)
+      if broken == false
+        dock(bike)
+      else
+        bike.working?(false)
+      end
+    end
+
     private
 
     def full?
