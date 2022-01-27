@@ -36,6 +36,17 @@ describe DockingStation do
         expect(subject).to respond_to(:bike)
       end 
     end  
+
+    describe "#initialize" do
+      it "should allow a different capacity to be set" do
+        station = DockingStation.new(30)
+        expect(station.capacity).to eq 30
+      end
+      it "should return the default capacity if no capacity argument set" do
+        station = DockingStation.new
+        expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
+      end
+    end
 end
 
 # a) gets a bike, and then b) expects the bike to be working
