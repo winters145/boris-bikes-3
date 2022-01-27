@@ -10,14 +10,14 @@ class DockingStation
 
     def release_bike 
       if @stored_bikes.empty? 
-      raise
-      #else  
-      #Bike.new
+        raise "no bikes"
+      else  
+        @stored_bikes.last
       end
     end
 
     def dock(bike) 
-      #@stored_bikes << bike
+      @stored_bikes << bike
       @bike = bike
     end
 
