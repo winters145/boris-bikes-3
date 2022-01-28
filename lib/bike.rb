@@ -1,7 +1,7 @@
 class Bike
 
     def working?(working)
-      working 
+      working
     end
     
 end

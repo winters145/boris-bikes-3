@@ -13,10 +13,18 @@ describe DockingStation do
       end      
     end
     
-    describe "#get_bike" do
-      it 'releases working bikes' do
+    describe "#release_bike" do
+      it "releases working bikes" do
         bike = Bike.new
         expect(bike.working?(true)).to eq true
+      end
+      it "releases only working bikes, even after a broken one returned" do
+        working_bike = Bike.new
+        broken_bike = Bike.new
+        subject.return_bike(working_bike)
+        subject.return_bike(broken_bike,false) # return a broken bike using false parameter
+        expect(subject.release_bike).to eq working_bike
+        # above - as we return the last added bike, this would be the broken bike if it were added to the array
       end
     end
 
@@ -32,7 +40,7 @@ describe DockingStation do
     end
 
     describe "#bike" do 
-      it 'docking station responds to bike' do
+      it "docking station responds to bike" do
         expect(subject).to respond_to(:bike)
       end 
     end  
@@ -53,6 +61,12 @@ describe DockingStation do
         broken_bike = Bike.new
         subject.return_bike(broken_bike, false)
         expect(broken_bike.working?(false)).to eq false 
+      end
+      it "should allow both broken and working bikes to be returned" do
+        working_bike = Bike.new
+        broken_bike = Bike.new
+        expect(subject.return_bike(working_bike)).to be_truthy
+        expect(subject.return_bike(broken_bike,false)).to be_truthy
       end
     end
 end

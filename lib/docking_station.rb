@@ -22,11 +22,11 @@ class DockingStation
       @bike = bike
     end
 
-    def return_bike(bike, broken)
-      if broken == false
+    def return_bike(bike, working = true)
+      if working
         dock(bike)
       else
-        bike.working?(false)
+        return "broken bike returned but not docked"
       end
     end
 
